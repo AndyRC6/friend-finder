@@ -1,6 +1,6 @@
 var mysql = require("mysql");
 
-var connection = mysql.createConnection({
+var pool = mysql.createPool({
   host: "us-cdbr-iron-east-05.cleardb.net",
   port: 3306,
 
@@ -12,6 +12,4 @@ var connection = mysql.createConnection({
   database: "heroku_bca3519087a4c94"
 });
 
-
-
-module.exports = connection;
+module.exports = pool;

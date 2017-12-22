@@ -1,18 +1,20 @@
-var connection = require('../data/friends.js');
+var mysql = require('../data/friends.js');
+
 
 
 module.exports = function(app){
     app.get("/", function(request, response){
-        connection.connect(function(err) {
-            if (err) throw err;
-            console.log("connected as id " + connection.threadId);
-          });
 
-          connection.query("select * from friends", function(err, data){
-            console.log(data);
-            connection.destroy();
-            response.render('index');
-          })
+      mysql.getConnection(function(err, connection){
+        if(err) throw err;
+        connection.query("select * from friends", function(err, data){
+          if(err){
+            console.log(err);
+            console.log("there was an error!");
+          }
+          response.render("index", {friendCount: data.length});
+        })
+      })
         
 })
 }
