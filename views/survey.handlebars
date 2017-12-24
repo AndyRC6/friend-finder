@@ -1,0 +1,197 @@
+<style>
+    .jumbotron{
+        background-image: url("https://www.rd.com/wp-content/uploads/2016/02/02-friends-make-you-more-attractive.jpg");
+        background-size:100%;
+        height:400px;
+        border-bottom:solid;
+        border-bottom-color:black;
+        border-bottom-width:2px;
+    }
+    select, input{
+        width:50%;
+        display:block;
+        margin-left:25%;
+        margin-bottom:25px;
+    }
+    label{
+        margin-left:25%;
+    }
+    .submit-btn{
+        margin-left:45%;
+        margin-bottom:50px;
+    }
+</style>
+<div class="jumbotron">
+    <div class="container">
+        <h1>Friend Finderz</h1>
+        <p>
+            <a class="btn btn-success btn-lg" href="/"><span class="glyphicon glyphicon-home"></span> Home</a>
+        </p>
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            
+            <form action="/find-friend" method="POST" role="form">
+                <legend>Fill out this form to find your new friend</legend>
+                <p>1 = strongly disagree</p>
+                <p>5 = strongly agree</p>
+            
+                <div class="form-group">
+                    <label>Name</label>
+                    <input name="name" type="text">
+                    <label>Image URL</label>
+                    <input name="img" type="text">
+                    <hr />
+                    <label for="">You consider yourself to be an introvert</label>
+                    <select name="q1">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                    <br />
+                    <label for="">You are the life of the party</label>
+                    <select name="q2">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                    <br />
+                    <label for="">You prefer to read a book than go out</label>
+                    <select name="q3">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                    <br />
+                    <label for="">You enjoy the great outdoors</label>
+                    <select name="q4">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                    <br />
+                    <label for="">You love animals</label>
+                    <select name="q5">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                    <br />
+                    <label for="">You're picky when it comes to food</label>
+                    <select name="q6">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                    <br />
+                    <label for="">You like to take risks</label>
+                    <select name="q7">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                    <br />
+                    <label for="">You enjoy travelling</label>
+                    <select name="q8">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                    <br />
+                    <label for="">You spend time with your friends often</label>
+                    <select name="q9">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                    <br />
+                    <label for="">You keep your emotions bottled up</label>
+                    <select name="q10">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary submit-btn">Submit</button>
+            </form>
+            
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="modal-id">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Modal title</h4>
+            </div>
+            <div class="modal-body">
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $(document).ready(function(){
+        $(".submit-btn").on("click", function(){
+            event.preventDefault();
+            var answers = {
+                name: $('[name="name"]').val(),
+                img: $('[name="img"]').val(),
+                q1: $('[name="q1"]').val(),
+                q2: $('[name="q2"]').val(),
+                q3: $('[name="q3"]').val(),
+                q4: $('[name="q4"]').val(),
+                q5: $('[name="q5"]').val(),
+                q6: $('[name="q6"]').val(),
+                q7: $('[name="q7"]').val(),
+                q8: $('[name="q8"]').val(),
+                q9: $('[name="q9"]').val(),
+                q10: $('[name="q10"]').val()
+            }
+
+            $.post("/find-friend", answers, function(data, status){
+                if(data !== "invalid"){
+                    console.log(data);
+                    $(".modal-title").html(data.name);
+                    $(".modal-body").html(`<img src="${data.photo}" style="width:400px" />`)
+                    $('#modal-id').modal('toggle');
+                }else{
+                    alert("Please make sure you complete all the required fields!");
+                }
+            })
+
+        })
+    })
+</script>
